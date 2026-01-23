@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Day 1: Anchor Links</title>
+  </head>
+  <body>
+    <h1>My Links Page</h1>
+
+    <p>
+      Visit
+      <a href="https://www.linkedin.com/in/opeyemi-bamisi-170059386"
+        >Dope_dev Linkedin Profile</a
+      >
+      to know about him
+    </p>
+
+    <p>
+      <a href="https://www.bbc.com/news" target="_blank">BBC News</a> (opens in
+      new tab)
+    </p>
+
+    <p>
+      <a href="mailto:Opeyemibamisidopdev@gmail.com">Contact Me</a> this allows
+      to connect direct web email address
+    </p>
+
+    <p>
+      <a href="#tips">Jump to Tips</a> This will jumps to the tips section of
+      the page
+    </p>
+
+    <p>
+      <a href="resume.pdf" title="Download my resume (PDF, 2MB)">
+        Download Resume
+      </a>
+      This will add a small text popup when user hovers this link
+    </p>
+
+    <h3>Combining Attributes. You can use multiple attributes in one anchor tag</h3>
+    <a
+      href="https://github.com/Opeyemibamisi"
+      target="_blank"
+      title="Dope_dev Repository"
+      id="my-repo"
+    >
+      Dope_dev GitHub
+    </a>
+
+    <div style="height: 1000px"></div>
+    <!-- this to create a space in between -->
+
+    <h2 id="tips">Useful Tips</h2>
+    <ul>
+      <li>Always use descriptive link text, not just "click here"</li>
+      <li>External links should open in new tabs</li>
+      <li>Internal links should stay in same tab</li>
+    </ul>
+  </body>
+</html>
+
+<!-- Social Media Post -->
+ 
+<!--Day 1: A
+Anchor tag (<a>) & Attributes
+We will be learning how to create clickable links in HTML and other useful attributes that can be used with it like target, title, and id.
+
+The <a> Tag 
+The <a> tag stands for “anchor”. It’s used to create hyperlinks that can point to other web pages, files, locations within the same page, or even email addresses.
+Basic Syntax:
+html
+<a href="URL">Link Text</a>
+Example:
+html
+<a href="https://www.google.com">Visit Google</a>
+This will display or Visit Google webpage (clickable in a browser).
+
+Key Attributes of <a> Tag
+Attribute What It Does 
+
+"href" = this specifies the link destination.	href="page.html"
+
+"target" = this decides where to open the link.	target="_blank" (new tab)
+
+"title" = this adds a tooltip text shown on hover.	title="Go to homepage"
+"id" = Gives the link a unique ID (useful for styling or JavaScript).	id="home-link"
+
+"rel" = Relationship between current and linked page (important for security and SEO).	rel="noopener" -->
+
+<!-- Common Mistakes to Avoid 
+Empty href: <a href="#"> creates a link that goes nowhere.
+
+Missing quotes: href=page.html vs href="page.html" (always use quotes).
+
+Broken paths: If linking to images/photo.jpg, ensure the images folder exists.
+
+Ignoring accessibility: Screen readers rely on good link text.
+
+
+Quick Quiz 
+What does <a> stand for?
+
+Which attribute makes a link open in a new tab?
+
+How would you link to contact.html in the same folder?
+
+What’s the difference between href="#top" and href="top.html"?
+
+(Answers: 1. Anchor, 2. target="_blank", 3. <a href="contact.html">Contact</a>, 4. #top links to an element with id="top" on same page; top.html links to a different file.) -->
