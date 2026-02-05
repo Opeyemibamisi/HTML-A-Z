@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Day 6: Forms</title>
+  </head>
+  <body>
+    <h1>Contact Form</h1>
+
+    <form action="/contact" method="POST">
+      <!-- Text inputs -->
+      <label for="name">Full Name:</label><br />
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <!-- Radio buttons -->
+      <p>Gender:</p>
+
+      <input type="radio" id="male" name="gender" value="male" />
+      <label for="male">Male</label><br />
+
+      <input type="radio" id="female" name="gender" value="female" />
+      <label for="female">Female</label><br />
+
+      <input type="radio" id="other" name="gender" value="other" />
+      <label for="other">Other</label><br /><br />
+
+      <!-- Checkbox -->
+      <input type="checkbox" id="newsletter" name="newsletter" />
+      <label for="newsletter">Subscribe to newsletter</label><br /><br />
+
+      <!-- Textarea -->
+      <label for="message">Message:</label><br />
+      <textarea id="message" name="message" rows="4" cols="50"></textarea
+      ><br /><br />
+
+      <!-- Submit -->
+      <input type="submit" value="Send Message" />
+      <input type="reset" value="Clear Form" />
+    </form>
+  </body>
+</html>
+
+<!-- social media post    -->
+
+<!-- Day 6: F → Forms (<form>, <input>, <label>)
+1. <form> - Form Container, this element wraps all form elements which include input fields, labels, buttons, etc. it defines how form data is sent and where.
+<form action="/submit" method="POST">
+    Form elements will go here
+</form>
+Attributes:
+action - where to send form data
+method - GET (visible in URL) or POST (not visible)
+
+2. <input> - Input attribute controls a wide range of user inputs like text, passwords, emails, checkboxes, radio buttons, file uploads, etc.
+
+3. <label> - Form Labels
+Associate text with form controls for better accessibility. label makes it easier for users to understand what input is expected. -->

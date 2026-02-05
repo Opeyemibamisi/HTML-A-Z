@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day 9: I - Images & Inline vs Block</title>
+    <style>
+        .block-example {
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+        }
+        .inline-example {
+            background-color: #ffeb3b;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding Element Display Types</h1>
+    
+    <!-- Block element example -->
+    <div class="block-example">
+        <h2>This is a Block Element (div)</h2>
+        <p>Block elements start on new lines and take full width.</p>
+    </div>
+    
+    <!-- Inline elements inside paragraph -->
+    <p>
+        This paragraph contains <span class="inline-example">inline elements</span>
+        like <a href="#">links</a>, <strong>bold text</strong>, and 
+        <em>italic text</em>. Inline elements <span class="highlight">don't break the flow</span>.
+    </p>
+    
+    <!-- Image examples -->
+    <div class="image-container">
+        <h2>Image Examples</h2>
+        <p>
+            Images are <span class="highlight">inline-block</span> elements.
+            They flow with text but can have dimensions set.
+        </p>
+        
+        <!-- Basic image -->
+        <img src="./Image/Day 9 page.png" 
+             alt="Placeholder image 200x150"
+             width="200"
+             height="150"
+             title="Basic image example">
+    </div>
+</body>
+</html>
+
+<!-- social media post -->
+
+<!-- Day 9: I → Images (<img>) & Inline vs Block Elements
+
+
+1. Images - this is the tag used to embed images in HTML documents.
+It is an empty element and requires the src (source) and alt (alternative text) attributes.
+<img src="image.jpg" alt="Description">
+the alt attribute is important for accessibility and SEO.
+more optional attributes include width, height, title, loading, and crossorigin.
+
+2. Inline Elements vs Block
+Block Elements: Start on a new line, it take full available width and can contain other block/inline elements.
+Examples: <div>, <p>, <h1>-<h6>, <section>, <article>
+
+Inline Elements: this don't start new lines, it takes only necessary width and cannot contain block elements
+Examples: <span>, <a>, <strong>, <em>, <img> -->

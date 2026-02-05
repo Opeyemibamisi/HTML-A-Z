@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Day 4: Document Structure -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Personal profile page" />
+    <title>My Profile - HTML Basics Review</title>
+    <style>
+      /* Basic styling for our project */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      section {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      hr {
+        border: none;
+        height: 1px;
+        background: #ddd;
+        margin: 20px 0;
+      }
+      .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+      }
+      .skills span {
+        display: inline-block;
+        background: #3498db;
+        color: white;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Day 7: Header -->
+    <header>
+      <h1>Dope_dev</h1>
+      <p>Web Developer & HTML Enthusiast</p>
+      <nav>
+        <!-- Day 1: Anchor links -->
+        <a href="#about">About</a> | <a href="#skills">Skills</a> |
+        <a href="#projects">Projects</a> |
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Day 3: Div containers -->
+    <div class="main-content">
+      <!-- Day 8: Headings -->
+      <section id="about">
+        <h2>About Me</h2>
+        <hr />
+        <!-- Day 9: Inline elements -->
+        <p>
+          Hello! I'm a <span class="highlight">passionate web developer</span>
+          currently learning HTML through the A-Z series. I enjoy creating
+          clean, semantic websites.
+        </p>
+        <!-- Day 2: Line breaks in address -->
+        <p>
+          <strong>Location:</strong><br />
+          123 Dope_dev Street<br />
+          Ibadan city, Oyo Nigeria
+        </p>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <hr />
+        <div class="skills">
+          <!-- Day 9: Span elements -->
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>Responsive Design</span>
+          <span>Git</span>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <hr />
+        <div>
+          <h3>Project 1: Portfolio Website</h3>
+          <p>Built using semantic HTML5 and CSS3.</p>
+          <!-- Day 1: Link opening in new tab -->
+          <a href="https://example.com/project1" target="_blank" rel="noopener">
+            View Project →
+          </a>
+        </div>
+        <hr />
+        <div>
+          <h3>Project 2: Contact Form</h3>
+          <p>A fully accessible contact form with validation.</p>
+          <a href="#contact">Try it below ↓</a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <hr />
+        <!-- Day 6: Form -->
+        <form class="contact-form" action="#" method="POST">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <!-- Day 2: Buttons -->
+          <button type="submit">Send Message</button>
+          <button type="reset">Clear Form</button>
+        </form>
+
+        <p style="margin-top: 20px">
+          <!-- Day 1: Email link -->
+          Or email me directly:
+          <a href="mailto:opeyemibamisidopedev@gmail.com">Dope_dev@gmail.com</a>
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <!-- Day 3: Comment -->
+      <!-- Footer section -->
+      <hr />
+      <p>© 2024 Dope_dev. Built with HTML5.</p>
+      <p>This page uses semantic HTML elements for better accessibility.</p>
+    </footer>
+  </body>
+</html>
+
+<!-- social medial post -->
+
+<!-- i will be sharing a mini project today showcase what we have so far this HTML A-Z Series.
+this and many more will you be able to do with the of this series
+
+Note in the course of this series 
+CSS3 was used in order to make the exampls understandable and to look good. -->
