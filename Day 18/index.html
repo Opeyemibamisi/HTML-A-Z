@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Day 18: Radio Buttons & Required Fields</title>
+    <style>
+      body {
+        font-family: "Segoe UI", system-ui;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background: #f0f4f8;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .form-container {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .form-section {
+        flex: 1;
+        min-width: 300px;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      h2 {
+        color: #3498db;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      .radio-group,
+      .checkbox-group {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+      }
+      label {
+        cursor: pointer;
+        display: block;
+        padding: 8px 0;
+      }
+      fieldset {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      legend {
+        font-weight: bold;
+        color: #2c3e50;
+        padding: 0 10px;
+      }
+      input:required {
+        border-left: 4px solid #e74c3c;
+      }
+      input:valid {
+        border-left: 4px solid #2ecc71;
+      }
+      input:invalid {
+        border-left: 4px solid #e74c3c;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 20px 0;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+      button {
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: white;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        background: linear-gradient(135deg, #2980b9, #34495e);
+      }
+      .error-message {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: -15px;
+        margin-bottom: 15px;
+        display: none;
+      }
+      input:invalid + .error-message {
+        display: block;
+      }
+      .demo-box {
+        background: #e8f6f3;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .accessibility-tip {
+        background: #fff3cd;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 15px 0;
+        border-left: 4px solid #ffc107;
+      }
+      code {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Day 18: Radio Buttons & Required Fields</h1>
+
+    <div class="form-container">
+      <!-- Radio Buttons Section -->
+      <div class="form-section">
+        <h2>📻 Radio Buttons</h2>
+        <p>Radio buttons let users select ONE option from a group.</p>
+
+        <div class="demo-box">
+          <h3>Basic Radio Group</h3>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="size" value="small" /> Small
+            </label>
+            <label>
+              <input type="radio" name="size" value="medium" checked /> Medium
+            </label>
+            <label>
+              <input type="radio" name="size" value="large" /> Large
+            </label>
+          </div>
+        </div>
+
+        <div class="demo-box">
+          <h3>Fieldset with Legend</h3>
+          <fieldset>
+            <legend>Choose your preferred contact method:</legend>
+            <label>
+              <input type="radio" name="contact" value="email" checked /> Email
+            </label>
+            <label>
+              <input type="radio" name="contact" value="phone" /> Phone
+            </label>
+            <label>
+              <input type="radio" name="contact" value="sms" /> SMS
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="accessibility-tip">
+          <h4>Accessibility Best Practices:</h4>
+          <ul>
+            <li>
+              Always use <code>&lt;fieldset&gt;</code> and
+              <code>&lt;legend&gt;</code> for groups
+            </li>
+            <li>
+              Wrap <code>&lt;input&gt;</code> in <code>&lt;label&gt;</code> for
+              better touch targets
+            </li>
+            <li>
+              Use same <code>name</code> attribute for related radio buttons
+            </li>
+            <li>Provide a default selection when appropriate</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Required Fields Section -->
+      <div class="form-section">
+        <h2>🔒 Required Fields</h2>
+        <p>
+          The <code>required</code> attribute prevents form submission until
+          fields are filled.
+        </p>
+
+        <div class="demo-box">
+          <h3>Registration Form</h3>
+          <form id="demoForm">
+            <label for="fullname">Full Name *</label>
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              required
+              placeholder="Enter your full name"
+            />
+            <div class="error-message">Please enter your name</div>
+
+            <label for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="example@domain.com"
+            />
+            <div class="error-message">Please enter a valid email</div>
+
+            <label for="password">Password *</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              minlength="8"
+              placeholder="Minimum 8 characters"
+            />
+            <div class="error-message">
+              Password must be at least 8 characters
+            </div>
+
+            <button type="submit">Submit Form</button>
+          </form>
+        </div>
+
+        <div class="accessibility-tip">
+          <h4>HTML5 Validation Attributes:</h4>
+          <ul>
+            <li><code>required</code>: Field must be filled</li>
+            <li><code>minlength</code>: Minimum character count</li>
+            <li><code>maxlength</code>: Maximum character count</li>
+            <li><code>pattern</code>: Regex validation</li>
+            <li><code>min</code>/<code>max</code>: Number range</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day 22: Video & Validation</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            color: var(--dark);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Video Styling */
+        video {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Validation States */
+        input:valid {
+            border-color: var(--success);
+        }
+        
+        input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--danger);
+        }
+        
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input:invalid:not(:focus):not(:placeholder-shown) + .error-message {
+            display: block;
+        }
+        
+        /* Custom Validation Styling */
+        .validation-demo input {
+            position: relative;
+        }
+        
+        .validation-demo input:required::after {
+            content: " *";
+            color: var(--danger);
+        }
+        
+        /* Button Styling */
+        button {
+            background: linear-gradient(135deg, var(--primary), #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: linear-gradient(135deg, #2980b9, var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Code Display */
+        code {
+            background: var(--dark);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        /* Responsive Video */
+        .responsive-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .responsive-video iframe,
+        .responsive-video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Custom Controls */
+        .custom-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .custom-controls button {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+        
+        /* Accessibility */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Day 22: Video Embedding</h1>
+    
+    <div class="container">
+        <!-- Introduction -->
+        <section class="card">
+            <h2>Why Video & Validation Matter</h2>
+            <p>Video content engages users, while form validation ensures data quality and user experience. HTML5 provides native solutions for both!</p>
+            
+            <div class="grid">
+                <div>
+                    <h3>📹 Video Benefits</h3>
+                    <ul>
+                        <li>Higher engagement than text</li>
+                        <li>Better information retention</li>
+                        <li>Native browser controls</li>
+                        <li>Accessibility features</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>✅ Validation Benefits</h3>
+                    <ul>
+                        <li>Better user experience</li>
+                        <li>Reduced server load</li>
+                        <li>Data quality assurance</li>
+                        <li>Security improvement</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Video Basics -->
+        <section class="card">
+            <h2>🎥 Basic Video Embedding</h2>
+            
+            <div class="video-container">
+                <video controls poster="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.webm" type="video/webm">
+                    <track src="subtitles.vtt" kind="subtitles" srclang="en" label="English">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="grid">
+                <div>
+                    <h3>HTML Code</h3>
+                    <pre><code>&lt;video controls poster="thumbnail.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    &lt;track src="subtitles.vtt" 
+           kind="subtitles" 
+           srclang="en" 
+           label="English"&gt;
+    Fallback text for old browsers
+&lt;/video&gt;</code></pre>
+                </div>
+                
+                <div>
+                    <h3>Video Attributes</h3>
+                    <ul>
+                        <li><code>controls</code> - Shows player controls</li>
+                        <li><code>autoplay</code> - Starts automatically</li>
+                        <li><code>loop</code> - Repeats video</li>
+                        <li><code>muted</code> - Starts muted</li>
+                        <li><code>poster</code> - Thumbnail image</li>
+                        <li><code>preload</code> - Loading strategy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        
+    
+    <script>
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (this.checkValidity()) {
+                        alert('Form submitted successfully!');
+                        this.reset();
+                    } else {
+                        // Find first invalid field and focus it
+                        const invalid = this.querySelector(':invalid');
+                        if (invalid) {
+                            invalid.focus();
+                        }
+                    }
+                });
+            });
+            
+            // Real-time validation feedback
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.borderColor = this.checkValidity() ? '#2ecc71' : '#e74c3c';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.checkValidity()) {
+                        this.reportValidity();
+                    }
+                });
+            });
+            
+            // Video API example
+            const video = document.getElementById('customVideo');
+            if (video) {
+                video.addEventListener('loadeddata', function() {
+                    console.log('Video loaded: ', this.duration + ' seconds');
+                });
+                
+                video.addEventListener('timeupdate', function() {
+                    const percent = (this.currentTime / this.duration) * 100;
+                    console.log('Progress: ', percent.toFixed(1) + '%');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

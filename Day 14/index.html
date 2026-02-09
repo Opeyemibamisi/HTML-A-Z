@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14: Navigation Mastery</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Main Navigation */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .main-nav a.active {
+            background-color: #e74c3c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Content Sections */
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        /* Navigation Examples */
+        .nav-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb ol {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .breadcrumb li {
+            margin-right: 0.5rem;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: "›";
+            margin-left: 0.5rem;
+            color: #7f8c8d;
+        }
+        
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .pagination li {
+            margin: 0 0.25rem;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #ecf0f1;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination a:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .pagination .active a {
+            background: #3498db;
+            color: white;
+        }
+        
+        /* External Links Section */
+        .external-links {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .link-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ffc107;
+        }
+        
+        .link-card a {
+            color: #e74c3c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-card a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Code Display */
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        /* Footer Navigation */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-nav h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-nav ul {
+            list-style: none;
+        }
+        
+        .footer-nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s;
+        }
+        
+        .footer-nav a:hover {
+            color: #3498db;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Accessibility Focus Styles */
+        a:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        /* Skip to main content link (for accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #e74c3c;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1001;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+ 
+    <header>
+        <div class="container">
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#Contact"> Contact </a></li>
+                    <li><a href="#ABOUT">About</a></li>
+                    <li><a href="#FAQ">FAQ</a></li>
+                    <li><a href="#practice"> Practice</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>🧭 Navigation & Link Security</h1>
+            <p>Master semantic navigation and secure linking practices in HTML</p>
+        </div>
+    </section>
+    
+    <main id="main-content" class="container">
+        <!-- Introduction -->
+        <section>
+            <h2>Why Navigation Matters</h2>
+            <p>Good navigation is crucial for both user experience and accessibility. Semantic HTML navigation helps:</p>
+            <ul>
+                <li>Screen readers understand your site structure</li>
+                <li>Search engines index your pages better</li>
+                <li>Users find content easily</li>
+                <li>Maintain consistent site architecture</li>
+            </ul>
+        </section>
+        
+        <!-- Navigation Types -->
+        <section id="navigation">
+            <h2>Types of Navigation</h2>
+            
+            <div class="nav-examples">
+                <!-- Main Navigation -->
+                <div class="nav-box">
+                    <h3>1. Main Navigation</h3>
+                    <nav aria-label="Primary">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <p><small>Typically placed in header for primary site navigation.</small></p>
+                </div>
+                
+                <!-- Breadcrumb -->
+                <div class="nav-box">
+                    <h3>2. Breadcrumb Navigation</h3>
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Computers</a></li>
+                            <li><span aria-current="page">Laptops</span></li>
+                        </ol>
+                    </nav>
+                    <p><small>Shows current location in site hierarchy.</small></p>
+                </div>
+                
+                <!-- Sidebar Navigation -->
+                <div class="nav-box">
+                    <h3>4. Sidebar Navigation</h3>
+                    <nav aria-label="Documentation">
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#getting-started">Getting Started</a></li>
+                            <li><a href="#tutorials">Tutorials</a></li>
+                            <li><a href="#api-reference">API Reference</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </nav>
+                    <p><small>For documentation or multi-section content.</small></p>
+                </div>
+            </div>
+        </section>
+        
+       
+</body>
+</html>
+
+<!-- 
+Day 14: N → Navigation (<nav>)
+1. <nav> - Semantic Navigation Element
+The <nav> element represents a section of navigation links. We can use <nav> tag for the primary website navigation, Table of contents, Pagination controls, Breadcrumb trails
+
+     -->

@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Day 12: Lists Masterclass</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        line-height: 1.6;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 20px;
+      }
+      .list-box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        min-width: 250px;
+      }
+      h2 {
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 8px;
+      }
+      ul,
+      ol {
+        padding-left: 25px;
+      }
+      li {
+        margin: 8px 0;
+        padding-left: 5px;
+      }
+      dt {
+        font-weight: bold;
+        color: #e74c3c;
+        margin-top: 10px;
+      }
+      dd {
+        margin-left: 20px;
+        color: #555;
+      }
+      .navigation-list {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      .navigation-list a {
+        color: #3498db;
+        text-decoration: none;
+        display: block;
+        padding: 5px 10px;
+        border-radius: 3px;
+      }
+      .navigation-list a:hover {
+        background: #34495e;
+      }
+      .checklist li {
+        list-style-type: "✓ ";
+        color: #27ae60;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>📋 Mastering HTML Lists</h1>
+
+    <div class="container">
+      <!-- Unordered List -->
+       <!-- the list here represent the tag for each list item -->
+      <div class="list-box">
+        <h2>Shopping List (Unordered)</h2>
+        <ul>
+          <li>
+            Fresh Produce
+            <ul>
+              <li>Apples - 6 pieces</li>
+              <li>Bananas - 1 bunch</li>
+              <li>Carrots - 1 lb</li>
+            </ul>
+          </li>
+          <li>
+            Dairy
+            <ul>
+              <li>Milk - 1 gallon</li>
+              <li>Cheese - 1 block</li>
+              <li>Yogurt - 4 packs</li>
+            </ul>
+          </li>
+          <li>
+            Bakery
+            <ul>
+              <li>Whole wheat bread</li>
+              <li>Bagels</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ordered List -->
+      <div class="list-box">
+        <h2>Recipe Steps (Ordered)</h2>
+        <ol type="1">
+          <li>
+            Gather ingredients
+            <ol type="a">
+              <li>Check pantry</li>
+              <li>Prepare measuring cups</li>
+            </ol>
+          </li>
+          <li>Preheat oven to 375°F (190°C)</li>
+          <li>Mix dry ingredients in bowl</li>
+          <li>Add wet ingredients slowly</li>
+          <li>Pour into baking dish</li>
+          <li>Bake for 25-30 minutes</li>
+          <li>Let cool before serving</li>
+        </ol>
+
+        <h3>Alternative Numbering</h3>
+        <ol type="I">
+          <li>First Phase</li>
+          <li>Second Phase</li>
+          <li>Third Phase</li>
+        </ol>
+      </div>
+
+      <!-- Description List -->
+      <div class="list-box">
+        <h2>Web Tech Glossary (Description)</h2>
+        <dl>
+          <dt>HTML</dt>
+          <dd>
+            HyperText Markup Language - The standard markup language for web
+            pages.
+          </dd>
+
+          <dt>CSS</dt>
+          <dd>Cascading Style Sheets - Used for styling HTML elements.</dd>
+
+          <dt>JavaScript</dt>
+          <dd>A programming language that enables interactive web pages.</dd>
+
+          <dt>API</dt>
+          <dd>
+            Application Programming Interface - Allows software applications to
+            communicate.
+          </dd>
+
+          <dt>Responsive Design</dt>
+          <dd>Design approach that makes websites work on all device sizes.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Navigation Menu using List -->
+    <div class="list-box" style="margin-top: 30px">
+      <h2>Navigation Menu (List + Links)</h2>
+      <p>Lists are perfect for navigation menus:</p>
+
+      <ul class="navigation-list">
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#products">📦 Products</a></li>
+        <li><a href="#services">🛠️ Services</a></li>
+        <li><a href="#about">👥 About Us</a></li>
+        <li><a href="#contact">📞 Contact</a></li>
+      </ul>
+
+      <p>
+        <strong>Why this works:</strong> Screen readers can easily navigate
+        list-based menus.
+      </p>
+    </div>
+
+    <!-- Checklist Example -->
+    <div class="list-box" style="margin-top: 30px">
+      <h2>Daily Tasks Checklist</h2>
+      <ul class="checklist">
+        <li>Review HTML concepts</li>
+        <li>Practice coding exercises</li>
+        <li>Build a small project</li>
+        <li>Read documentation</li>
+        <li>Help someone learn</li>
+      </ul>
+    </div>
+
+    <!-- Nested List Example -->
+    <div class="list-box" style="margin-top: 30px">
+      <h2>Website Sitemap (Nested)</h2>
+      <ul>
+        <li>Homepage</li>
+        <li>
+          Products
+          <ul>
+            <li>
+              Electronics
+              <ul>
+                <li>Phones</li>
+                <li>Laptops</li>
+                <li>Accessories</li>
+              </ul>
+            </li>
+            <li>
+              Clothing
+              <ul>
+                <li>Men's</li>
+                <li>Women's</li>
+                <li>Kids'</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Services
+          <ul>
+            <li>Consulting</li>
+            <li>Support</li>
+            <li>Training</li>
+          </ul>
+        </li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <footer style="margin-top: 40px; text-align: center; color: #666">
+      <p>
+        Lists are versatile! Use them for menus, content organization, and data
+        display.
+      </p>
+      <p>
+        <small
+          >Remember: Always use semantic markup for better accessibility.</small
+        >
+      </p>
+    </footer>
+  </body>
+</html>

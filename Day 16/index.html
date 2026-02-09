@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Day 16: Paragraphs & Preformatted Text</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fefefe;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      .example-box {
+        background: white;
+        padding: 25px;
+        margin: 25px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .paragraph-demo {
+        background: #e8f4fc;
+        padding: 20px;
+        border-left: 4px solid #3498db;
+      }
+      pre {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+        line-height: 1.5;
+        tab-size: 4;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+        color: #c7254e;
+      }
+      .comparison {
+        display: flex;
+        gap: 20px;
+        margin: 30px 0;
+      }
+      .comparison-box {
+        flex: 1;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+      .whitespace-demo {
+        white-space: pre-wrap;
+        background: #fff3cd;
+        padding: 15px;
+        border: 1px dashed #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>📝 Day 16: Paragraphs & Preformatted Text</h1>
+
+    <!-- Paragraph Basics -->
+    <div class="example-box">
+      <h2>Paragraphs: <code>&lt;p&gt;</code></h2>
+      <div class="paragraph-demo">
+        <p>
+          This is a simple paragraph. Paragraphs are block-level elements that
+          automatically add margin above and below. They're perfect for body
+          text in articles, blog posts, and general content.
+        </p>
+
+        <p>
+          This is another paragraph. Notice the space between paragraphs? That's
+          the default margin. You can control this with CSS if needed.
+        </p>
+
+        <p>
+          Paragraphs can contain <strong>bold text</strong>,
+          <em>italic text</em>, <a href="#">links</a>, and even
+          <code>code snippets</code>. They're versatile containers for text
+          content.
+        </p>
+      </div>
+    </div>
+
+    <!-- Preformatted Text -->
+    <div class="example-box">
+      <h2>Preformatted Text: <code>&lt;pre&gt;</code></h2>
+
+      <h3>Without &lt;pre&gt; (Regular Paragraph):</h3>
+      <p>function hello() { console.log("Hello World"); return true; }</p>
+
+      <h3>With &lt;pre&gt; (Preserved Formatting):</h3>
+      <pre>
+function hello() {
+    console.log("Hello World");
+    return true;
+}</pre
+      >
+
+      <p>
+        <strong>Key difference:</strong> The <code>&lt;pre&gt;</code> tag
+        preserves:
+      </p>
+      <ul>
+        <li>Spaces</li>
+        <li>Line breaks</li>
+        <li>Tabs</li>
+        <li>Text formatting exactly as typed</li>
+      </ul>
+    </div>
+
+    <!-- Comparison -->
+    <div class="example-box">
+      <h2>Comparison: <code>&lt;p&gt;</code> vs <code>&lt;pre&gt;</code></h2>
+
+      <div class="comparison">
+        <div class="comparison-box">
+          <h3>Paragraph (<code>&lt;p&gt;</code>)</h3>
+          <p>
+            HTML collapses multiple spaces and line breaks. This sentence has
+            extra spaces between words, but they won't show.
+          </p>
+          <p>Line breaks in the source code don't appear in the browser.</p>
+
+          <h4>Best for:</h4>
+          <ul>
+            <li>Regular text content</li>
+            <li>Articles and blog posts</li>
+            <li>Descriptions and narratives</li>
+            <li>Body text</li>
+          </ul>
+        </div>
+
+        <div class="comparison-box">
+          <h3>Preformatted (<code>&lt;pre&gt;</code>)</h3>
+          <pre>
+HTML preserves ALL formatting.
+This    sentence    has    extra    spaces.
+Line breaks
+are preserved
+exactly as typed.
+    Indentation matters too!</pre
+          >
+
+          <h4>Best for:</h4>
+          <ul>
+            <li>Code examples</li>
+            <li>ASCII art</li>
+            <li>Formatted text (poetry, addresses)</li>
+            <li>Output from programs</li>
+            <li>Preserving whitespace</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day 20: HTML Tables</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1200px; margin: 0 auto; padding: 30px; background: #f8f9fa; }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 40px; }
+        
+        /* Basic Table Styling */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td { 
+            padding: 15px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd; 
+        }
+        
+        th { 
+            background: linear-gradient(135deg, #3498db, #2c3e50); 
+            color: white; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:hover { background-color: #f5f5f5; }
+        
+        /* Table Variations */
+        .striped tr:nth-child(even) { background-color: #f9f9f9; }
+        .bordered { border: 2px solid #3498db; }
+        .bordered th, .bordered td { border: 1px solid #ddd; }
+        .compact th, .compact td { padding: 8px 12px; }
+        
+        /* Responsive Table */
+        .responsive-table { 
+            overflow-x: auto; 
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        /* Table Layout Examples */
+        .table-container { display: flex; flex-wrap: wrap; gap: 30px; margin: 30px 0; }
+        .table-example { flex: 1; min-width: 300px; }
+        
+        /* Code Display */
+        code { background: #2d2d2d; color: #f8f8f2; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 15px 0; }
+        
+        /* Accessibility Styling */
+        .caption { caption-side: top; font-weight: bold; font-size: 1.2em; margin-bottom: 10px; color: #2c3e50; }
+        .scope-demo th[scope="row"] { background: #e8f4fc; }
+        
+        /* Practice Area */
+        .practice-area { background: #e8f6f3; padding: 30px; border-radius: 10px; margin-top: 40px; }
+        .highlight { background: #fff3cd; padding: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Day 20: HTML Tables</h1>
+    
+    <!-- Introduction -->
+    <section>
+        <h2>Why Use Tables?</h2>
+        <p>HTML tables should be used for <strong>tabular data only</strong> - not for page layout! Use them for:</p>
+        <ul>
+            <li>Financial data</li>
+            <li>Comparison charts</li>
+            <li>Timetables</li>
+            <li>Statistics</li>
+            <li>Product specifications</li>
+        </ul>
+    </section>
+    
+    <!-- Basic Table Structure -->
+    <section>
+        <h2>📋 Basic Table Structure</h2>
+        
+        <div class="table-container">
+            <div class="table-example">
+                <h3>Simple Data Table</h3>
+                <table class="striped">
+                    <caption class="caption">Monthly Sales Report</caption>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Sales</th>
+                            <th>Growth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>January</td>
+                            <td>$12,500</td>
+                            <td>+5%</td>
+                        </tr>
+                        <tr>
+                            <td>February</td>
+                            <td>$14,200</td>
+                            <td>+12%</td>
+                        </tr>
+                        <tr>
+                            <td>March</td>
+                            <td>$15,800</td>
+                            <td>+8%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <td>$42,500</td>
+                            <td>+8.3% avg</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <div class="table-example">
+                <h3>HTML Code</h3>
+                <pre><code>&lt;table&gt;
+  &lt;caption&gt;Monthly Sales Report&lt;/caption&gt;
+  
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Month&lt;/th&gt;
+      &lt;th&gt;Sales&lt;/th&gt;
+      &lt;th&gt;Growth&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;January&lt;/td&gt;
+      &lt;td&gt;$12,500&lt;/td&gt;
+      &lt;td&gt;+5%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- More rows --&gt;
+  &lt;/tbody&gt;
+  
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Total&lt;/th&gt;
+      &lt;td&gt;$42,500&lt;/td&gt;
+      &lt;td&gt;+8.3% avg&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Table Elements Explained -->
+    <section>
+        <h2>🧩 Table Elements</h2>
+        
+        <div class="table-container">
+            <div class="table-example">
+                <h3>Core Elements</h3>
+                <ul>
+                    <li><code>&lt;table&gt;</code> - Table container</li>
+                    <li><code>&lt;caption&gt;</code> - Table title/description</li>
+                    <li><code>&lt;thead&gt;</code> - Header content</li>
+                    <li><code>&lt;tbody&gt;</code> - Body content</li>
+                    <li><code>&lt;tfoot&gt;</code> - Footer content</li>
+                    <li><code>&lt;tr&gt;</code> - Table row</li>
+                    <li><code>&lt;th&gt;</code> - Table header cell</li>
+                    <li><code>&lt;td&gt;</code> - Table data cell</li>
+                </ul>
+            </div>
+            
+            <div class="table-example">
+                <h3>Advanced Elements</h3>
+                <ul>
+                    <li><code>colspan</code> - Merge columns</li>
+                    <li><code>rowspan</code> - Merge rows</li>
+                    <li><code>&lt;colgroup&gt;</code> - Column grouping</li>
+                    <li><code>&lt;col&gt;</code> - Column properties</li>
+                    <li><code>scope</code> - Accessibility attribute</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Complex Table Example -->
+    <section>
+        <h2>🎯 Complex Table Example</h2>
+        
+        <div class="responsive-table">
+            <table class="bordered scope-demo">
+                <caption class="caption">Employee Schedule - Week 3, January 2024</caption>
+                <colgroup>
+                    <col style="background-color: #f0f8ff;">
+                    <col span="5" style="background-color: #f9f9f9;">
+                    <col style="background-color: #fff0f5;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Mon</th>
+                        <th scope="col">Tue</th>
+                        <th scope="col">Wed</th>
+                        <th scope="col">Thu</th>
+                        <th scope="col">Fri</th>
+                        <th scope="col">Total Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Alex Johnson</th>
+                        <td>9-5</td>
+                        <td>9-5</td>
+                        <td>9-5</td>
+                        <td>9-5</td>
+                        <td>9-1</td>
+                        <td>36</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Maria Garcia</th>
+                        <td>10-6</td>
+                        <td>10-6</td>
+                        <td colspan="2" style="background-color: #ffe6e6; text-align: center;">Vacation</td>
+                        <td>10-6</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sam Wilson</th>
+                        <td rowspan="2" style="background-color: #e6ffe6; text-align: center; vertical-align: middle;">Training</td>
+                        <td>1-9</td>
+                        <td>1-9</td>
+                        <td>1-9</td>
+                        <td>1-9</td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jamie Smith</th>
+                        <td>8-4</td>
+                        <td>8-4</td>
+                        <td>8-4</td>
+                        <td>8-4</td>
+                        <td>32</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="row">Department Total</th>
+                        <td>26</td>
+                        <td>30</td>
+                        <td>26</td>
+                        <td>26</td>
+                        <td>22</td>
+                        <td><strong>130 hours</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="highlight">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li><code>colspan="2"</code> - Maria's vacation spans 2 columns</li>
+                <li><code>rowspan="2"</code> - Training spans 2 rows</li>
+                <li><code>scope="col"</code> - Column headers for accessibility</li>
+                <li><code>scope="row"</code> - Row headers for accessibility</li>
+                <li><code>&lt;colgroup&gt;</code> - Column styling groups</li>
+                <li><code>&lt;caption&gt;</code> - Table description</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Table Variations -->
+    <section>
+        <h2>🎨 Table Styling Variations</h2>
+        
+        <div class="table-container">
+            <!-- Striped Table -->
+            <div class="table-example">
+                <h3>Striped Table</h3>
+                <table class="striped compact">
+                    <tr><th>Product</th><th>Price</th><th>Stock</th></tr>
+                    <tr><td>Laptop</td><td>$999</td><td>15</td></tr>
+                    <tr><td>Tablet</td><td>$499</td><td>22</td></tr>
+                    <tr><td>Phone</td><td>$799</td><td>8</td></tr>
+                </table>
+            </div>
+            
+            <!-- Bordered Table -->
+            <div class="table-example">
+                <h3>Bordered Table</h3>
+                <table class="bordered">
+                    <tr><th>Course</th><th>Instructor</th><th>Seats</th></tr>
+                    <tr><td>HTML</td><td>Alex</td><td>30</td></tr>
+                    <tr><td>CSS</td><td>Sam</td><td>25</td></tr>
+                    <tr><td>JS</td><td>Maria</td><td>20</td></tr>
+                </table>
+            </div>
+            
+            <!-- Hover Table -->
+            <div class="table-example">
+                <h3>Hover Effects</h3>
+                <table style="border-collapse: collapse; width: 100%;">
+                    <tr><th>City</th><th>Temp</th><th>Weather</th></tr>
+                    <tr><td>New York</td><td>12°C</td><td>☀️ Sunny</td></tr>
+                    <tr><td>London</td><td>8°C</td><td>☁️ Cloudy</td></tr>
+                    <tr><td>Tokyo</td><td>15°C</td><td>🌧️ Rainy</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Accessibility Section -->
+    <section>
+        <h2>♿ Table Accessibility</h2>
+        
+        <div class="table-container">
+            <div class="table-example">
+                <h3>Accessible Table Example</h3>
+                <table aria-describedby="table-description">
+                    <caption>Student Grades - Fall Semester</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Student</th>
+                            <th scope="col" id="math">Math</th>
+                            <th scope="col" id="science">Science</th>
+                            <th scope="col" id="english">English</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" id="student1">John Doe</th>
+                            <td headers="student1 math">85</td>
+                            <td headers="student1 science">92</td>
+                            <td headers="student1 english">88</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="student2">Jane Smith</th>
+                            <td headers="student2 math">91</td>
+                            <td headers="student2 science">87</td>
+                            <td headers="student2 english">95</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="table-description" style="font-size: 0.9em; color: #666;">Table showing student grades for three subjects in the Fall semester.</p>
+            </div>
+            
+            <div class="table-example">
+                <h3>Accessibility Tips</h3>
+                <ul>
+                    <li><strong>Always use <code>&lt;th&gt;</code> for headers</strong></li>
+                    <li><strong>Add <code>scope</code> attribute</strong> (col, row, colgroup, rowgroup)</li>
+                    <li><strong>Include <code>&lt;caption&gt;</code></strong> for table description</li>
+                    <li><strong>Use <code>aria-describedby</code></strong> for complex tables</li>
+                    <li><strong>Provide <code>headers</code> attribute</code></strong> for complex headers</li>
+                    <li><strong>Ensure proper color contrast</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Practice Area -->
+    <section class="practice-area">
+        <h2>💪 Practice Exercise</h2>
+        
+        <h3>Create a Product Comparison Table</h3>
+        
+        <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h4>Requirements:</h4>
+            <ol>
+                <li>Compare 3 products (Smartphone X, Tablet Y, Laptop Z)</li>
+                <li>Include these columns: Feature, Product 1, Product 2, Product 3</li>
+                <li>Include these rows: Price, Screen Size, RAM, Storage, Battery Life, Camera</li>
+                <li>Use <code>colspan</code> for a "Best Value" row</li>
+                <li>Use <code>rowspan</code> if any feature applies to multiple products</li>
+                <li>Add proper accessibility features:
+                    <ul>
+                        <li><code>&lt;caption&gt;</code> with description</li>
+                        <li><code>scope</code> attributes</li>
+                        <li><code>aria-describedby</code> if needed</li>
+                    </ul>
+                </li>
+                <li>Style the table with:
+                    <ul>
+                        <li>Striped rows</li>
+                        <li>Hover effects</li>
+                        <li>Different header background</li>
+                        <li>Responsive design</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 20px; border-radius: 8px;">
+            <h4>Starter Code Structure:</h4>
+            <pre><code>&lt;div class="responsive-table"&gt;
+  &lt;table&gt;
+    &lt;caption&gt;...&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col"&gt;Feature&lt;/th&gt;
+        &lt;!-- Add product headers --&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Price&lt;/th&gt;
+        &lt;!-- Add price data --&gt;
+      &lt;/tr&gt;
+      &lt;!-- Add more rows --&gt;
+      &lt;tr&gt;
+        &lt;td colspan="4"&gt;&lt;strong&gt;Best Value: Tablet Y&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        
+        <h3>Bonus Challenge:</h3>
+        <p>Create a class schedule table with:</p>
+        <ul>
+            <li>Days as columns (Mon-Fri)</li>
+            <li>Time slots as rows (9:00, 10:00, etc.)</li>
+            <li>Some classes spanning multiple time slots (<code>rowspan</code>)</li>
+            <li>Lunch break spanning all days (<code>colspan</code>)</li>
+            <li>Different colors for different subjects</li>
+        </ul>
+    </section>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day 17: Quotes & Blockquotes</title>
+    <style>
+        body { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; max-width: 800px; margin: 0 auto; padding: 40px; background: #faf9f7; }
+        h1 { color: #5d4037; text-align: center; border-bottom: 3px double #8d6e63; padding-bottom: 20px; }
+        .quote-container { display: flex; flex-direction: column; gap: 40px; margin: 40px 0; }
+        .quote-box { padding: 30px; border-radius: 10px; position: relative; }
+        .inline-quote { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        .block-quote { background: #e3f2fd; border-left: 4px solid #2196f3; padding-left: 40px; }
+        q { quotes: "“" "”" "‘" "’"; color: #2e7d32; font-style: italic; }
+        q::before { content: open-quote; }
+        q::after { content: close-quote; }
+        blockquote { margin: 20px 0; font-size: 1.2em; line-height: 1.6; position: relative; }
+        blockquote::before { content: "❝"; font-size: 3em; color: #2196f3; position: absolute; left: -50px; top: -10px; }
+        blockquote footer { text-align: right; font-style: normal; font-size: 0.9em; color: #666; margin-top: 15px; }
+        .cite-demo { background: #fff3e0; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .comparison { display: flex; gap: 30px; margin: 40px 0; }
+        .comp-box { flex: 1; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        code { background: #2d2d2d; color: #f8f8f2; padding: 2px 6px; border-radius: 3px; }
+        .practice-area { background: #f5f5f5; padding: 30px; border-radius: 10px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <h1>💬 Day 17: Quotes & Blockquotes</h1>
+    
+    <div class="quote-container">
+        <!-- Inline Quotes -->
+        <div class="quote-box inline-quote">
+            <h2>Inline Quotes: <code>&lt;q&gt;</code></h2>
+            <p>As Steve Jobs once said, <q>The only way to do great work is to love what you do.</q> This emphasizes the importance of passion in work.</p>
+            
+            <p>Einstein's famous equation <q>E=mc²</q> revolutionized physics. Sometimes, <q>less is more</q> applies perfectly to design principles.</p>
+            
+            <p>My grandmother always said, <q>When life gives you lemons, <q>make lemonade</q>,</q> showing nested quotes are possible too!</p>
+            
+            <div class="cite-demo">
+                <h3>With Citation:</h3>
+                <p>According to the W3C, <q cite="https://www.w3.org/TR/html52/textlevel-semantics.html#the-q-element">The q element represents some phrasing content quoted from another source.</q></p>
+                <p><small>Note: The <code>cite</code> attribute adds semantic meaning but doesn't display visibly.</small></p>
+            </div>
+        </div>
+        
+        <!-- Block Quotes -->
+        <div class="quote-box block-quote">
+            <h2>Block Quotes: <code>&lt;blockquote&gt;</code></h2>
+            
+            <blockquote cite="https://www.goodreads.com/quotes">
+                <p>Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.</p>
+                <footer>— Albert Einstein</footer>
+            </blockquote>
+            
+            <blockquote cite="https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.">
+                <p>I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.</p>
+                <footer>— Martin Luther King Jr., <cite>I Have a Dream Speech</cite></footer>
+            </blockquote>
+            
+            <blockquote>
+                <p>The web as I envisaged it, we have not seen it yet. The future is still so much bigger than the past.</p>
+                <footer>— Tim Berners-Lee, inventor of the World Wide Web</footer>
+            </blockquote>
+        </div>
+    </div>
+    
+    <!-- Comparison -->
+    <div class="comparison">
+        <div class="comp-box">
+            <h3><code>&lt;q&gt;</code> (Inline Quote)</h3>
+            <ul>
+                <li>Short quotations within text</li>
+                <li>Browser adds quotation marks automatically</li>
+                <li>Use <code>cite</code> attribute for source URL</li>
+                <li>Semantic markup for short quotes</li>
+                <li>Quotes can be styled with CSS <code>quotes</code> property</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <p>She said <q>Hello World!</q> and smiled.</p>
+        </div>
+        
+        <div class="comp-box">
+            <h3><code>&lt;blockquote&gt;</code> (Block Quote)</h3>
+            <ul>
+                <li>Longer quotations (multiple paragraphs)</li>
+                <li>Styled as separate block with indentation</li>
+                <li>Often includes <code>&lt;footer&gt;</code> for attribution</li>
+                <li>Can contain <code>&lt;cite&gt;</code> for source title</li>
+                <li>Use <code>cite</code> attribute for source URL</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <blockquote>
+                <p>This is a longer quote that deserves its own space.</p>
+                <footer>— Author Name</footer>
+            </blockquote>
+        </div>
+    </div>
+    
+</body>
+</html>

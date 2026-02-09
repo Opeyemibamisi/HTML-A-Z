@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 24: XHTML vs HTML5 & XML in HTML</title>
+    <style>
+        :root {
+            --xml-blue: #3498db;
+            --html5-orange: #e67e22;
+            --modern-purple: #9b59b6;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--xml-blue), var(--html5-orange), var(--modern-purple));
+        }
+        
+        h1 {
+            color: var(--dark);
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--xml-blue), var(--html5-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .card-xhtml {
+            border-color: var(--xml-blue);
+        }
+        
+        .card-xhtml::before {
+            content: 'XHTML';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--xml-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .card-html5 {
+            border-color: var(--html5-orange);
+        }
+        
+        .card-html5::before {
+            content: 'HTML5';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--html5-orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .card h2 {
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+        }
+        
+        .card-xhtml h2 {
+            border-color: var(--xml-blue);
+        }
+        
+        .card-html5 h2 {
+            border-color: var(--html5-orange);
+        }
+        
+        /* Code Display */
+        .code-container {
+            background: #2d2d2d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .code-header {
+            background: #1e1e1e;
+            color: #ccc;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-content {
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .xml { color: #4ec9b0; }
+        .tag { color: #569cd6; }
+        .attribute { color: #9cdcfe; }
+        .value { color: #ce9178; }
+        .comment { color: #6a9955; }
+        
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--modern-purple);
+        }
+        
+        .feature h4 {
+            margin: 0 0 10px 0;
+            color: var(--dark);
+        }
+        
+        /* SVG Demo */
+        .svg-demo {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .svg-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .svg-example {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Modern Features */
+        .modern-features {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+        
+        .modern-features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Practice Section */
+        .practice {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            border: 3px dashed #ffc107;
+        }
+        
+        .practice h2 {
+            color: #5d4037;
+            margin-top: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Day 24: XHTML vs HTML5 & XML in HTML</h1>
+            <p class="tagline">Understanding markup evolution and using XML-based technologies in modern HTML</p>
+        </header>
+        
+        <!-- Introduction -->
+        <section class="card">
+            <h2>📜 The Evolution of Web Markup</h2>
+            <p>The web has evolved through different markup languages, each building upon the previous while introducing new capabilities. Today, we'll explore the journey from strict XHTML to flexible HTML5, and how XML technologies integrate with modern HTML.</p>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <h4>HTML 4.01 (1999)</h4>
+                    <p>The classic HTML standard with loose syntax rules</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>XHTML 1.0 (2000)</h4>
+                    <p>HTML reformulated as XML - strict and well-formed</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>HTML5 (2014)</h4>
+                    <p>Modern standard with semantic elements and APIs</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>HTML5.2+ (Current)</h4>
+                    <p>Living standard with continuous improvements</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- XHTML vs HTML5 Comparison -->
+        <section>
+            <h2 style="text-align: center; margin: 60px 0 40px 0; color: var(--dark);">⚖️ XHTML vs HTML5: Key Differences</h2>
+            
+            <div class="comparison">
+                <!-- XHTML Card -->
+                <div class="card card-xhtml">
+                    <h2>XHTML 1.0 Strict</h2>
+                    <p>XHTML (Extensible HyperText Markup Language) is HTML reformulated as XML. It enforces strict syntax rules for well-formed documents.</p>
+                    
+                    <h3>Strict Rules:</h3>
+                    <ul>
+                        <li><strong>All elements must be closed</strong></li>
+                        <li><strong>All tags must be lowercase</strong></li>
+                        <li><strong>Attributes must be quoted</strong></li>
+                        <li><strong>Proper nesting required</strong></li>
+                        <li><strong>No attribute minimization</strong></li>
+                    </ul>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>XHTML Document Example</span>
+                            <span>Strict Syntax</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;!DOCTYPE</span> html <span class="attribute">PUBLIC</span> <span class="value">"-//W3C//DTD XHTML 1.0 Strict//EN"</span>
+<span class="value">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span> <span class="attribute">lang</span>=<span class="value">"en"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span>XHTML Example<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=UTF-8"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Welcome<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;strong&gt;</span>important<span class="tag">&lt;/strong&gt;</span> text.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>  <span class="comment">&lt;!-- Self-closing tag --&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+                        </div>
+                    </div>
+                    
+                    <h3>XHTML Advantages:</h3>
+                    <ul>
+                        <li>Strict validation catches errors early</li>
+                        <li>Compatible with XML tools and parsers</li>
+                        <li>Clean, predictable structure</li>
+                        <li>Better for automated processing</li>
+                    </ul>
+                </div>
+                
+                <!-- HTML5 Card -->
+                <div class="card card-html5">
+                    <h2>HTML5 Modern Standard</h2>
+                    <p>HTML5 introduces semantic elements, multimedia support, and flexible syntax while maintaining backward compatibility.</p>
+                    
+                    <h3>Flexible Rules:</h3>
+                    <ul>
+                        <li><strong>Optional closing tags</strong> for many elements</li>
+                        <li><strong>Case-insensitive</strong> (but lowercase recommended)</li>
+                        <li><strong>Unquoted attributes</strong> allowed (but quoted recommended)</li>
+                        <li><strong>Forgiving parser</strong> handles errors gracefully</li>
+                        <li><strong>New semantic elements</strong> (header, nav, section, etc.)</li>
+                    </ul>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>HTML5 Document Example</span>
+                            <span>Modern & Flexible</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="tag">&lt;!DOCTYPE</span> html<span class="tag">&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute">lang</span>=<span class="value">"en"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>HTML5 Example<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;header&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Welcome<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;/header&gt;</span>
+    
+    <span class="tag">&lt;nav&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+    
+    <span class="tag">&lt;main&gt;</span>
+        <span class="tag">&lt;article&gt;</span>
+            <span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;strong&gt;</span>important<span class="tag">&lt;/strong&gt;</span> text.<span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;br&gt;</span>  <span class="comment">&lt;!-- No slash needed --&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">image.jpg</span> <span class="attribute">alt</span>=<span class="value">Description</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;/article&gt;</span>
+    <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+                        </div>
+                    </div>
+                    
+                    <h3>HTML5 Advantages:</h3>
+                    <ul>
+                        <li>Backward compatible</li>
+                        <li>New semantic elements</li>
+                        <li>Native multimedia support</li>
+                        <li>Built-in form validation</li>
+                        <li>Better accessibility features</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- XML in HTML: SVG -->
+        <section class="svg-demo">
+            <h2>🎨 XML in HTML: SVG (Scalable Vector Graphics)</h2>
+            <p>SVG is an XML-based vector image format that can be embedded directly in HTML5. It's resolution-independent and can be styled with CSS.</p>
+            
+            <div class="svg-container">
+                <!-- Basic Shapes -->
+                <div class="svg-example">
+                    <h3>Basic Shapes</h3>
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <!-- Circle -->
+                        <circle cx="50" cy="50" r="40" fill="#3498db" />
+                        <!-- Rectangle -->
+                        <rect x="110" y="10" width="80" height="80" rx="10" fill="#2ecc71" />
+                        <!-- Polygon -->
+                        <polygon points="50,110 90,150 10,150" fill="#9b59b6" />
+                        <!-- Line -->
+                        <line x1="110" y1="110" x2="190" y2="190" stroke="#e74c3c" stroke-width="4" />
+                        <!-- Path -->
+                        <path d="M10,190 Q105,150 190,190" stroke="#f39c12" stroke-width="3" fill="none" />
+                    </svg>
+                </div>
+                
+                <!-- Animated SVG -->
+                <div class="svg-example">
+                    <h3>Animated SVG</h3>
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <!-- Animated circle -->
+                        <circle cx="100" cy="100" r="40" fill="#3498db">
+                            <animate attributeName="r" values="40;50;40" dur="2s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <!-- Rotating triangle -->
+                        <polygon points="100,30 70,90 130,90" fill="#2ecc71">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="3s" repeatCount="indefinite" />
+                        </polygon>
+                        
+                        <!-- Pulsing ring -->
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="#9b59b6" stroke-width="2" stroke-opacity="0.5">
+                            <animate attributeName="r" values="60;70;60" dur="1.5s" repeatCount="indefinite" />
+                            <animate attributeName="stroke-opacity" values="0.5;0.8;0.5" dur="1.5s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                </div>
+                
+                <!-- Interactive SVG -->
+                <div class="svg-example">
+                    <h3>Interactive SVG</h3>
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <!-- Button-like shapes -->
+                        <rect x="50" y="50" width="100" height="50" rx="10" fill="#3498db" class="svg-button" />
+                        <text x="100" y="85" text-anchor="middle" fill="white" font-family="Arial" font-size="16">Click Me</text>
+                        
+                        <!-- Hover effect circle -->
+                        <circle cx="100" cy="150" r="30" fill="#e74c3c" class="svg-hover" />
+                        <text x="100" y="155" text-anchor="middle" fill="white" font-family="Arial" font-size="12">Hover</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="code-container" style="margin-top: 30px;">
+                <div class="code-header">
+                    <span>SVG Embedded in HTML</span>
+                    <span>XML-based Vector Graphics</span>
+                </div>
+                <div class="code-content">
+                    <pre><code><span class="comment">&lt;!-- SVG embedded directly in HTML5 --&gt;</span>
+<span class="tag">&lt;svg</span> <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"200"</span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- Circle --&gt;</span>
+    <span class="tag">&lt;circle</span> <span class="attribute">cx</span>=<span class="value">"100"</span> <span class="attribute">cy</span>=<span class="value">"100"</span> <span class="attribute">r</span>=<span class="value">"80"</span> 
+          <span class="attribute">fill</span>=<span class="value">"#3498db"</span> <span class="attribute">stroke</span>=<span class="value">"#2980b9"</span><span class="tag">&gt;</span>
+        
+        <span class="comment">&lt;!-- Animation --&gt;</span>
+        <span class="tag">&lt;animate</span> <span class="attribute">attributeName</span>=<span class="value">"r"</span>
+                 <span class="attribute">values</span>=<span class="value">"80;90;80"</span>
+                 <span class="attribute">dur</span>=<span class="value">"2s"</span>
+                 <span class="attribute">repeatCount</span>=<span class="value">"indefinite"</span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/circle&gt;</span>
+    
+    <span class="comment">&lt;!-- Text --&gt;</span>
+    <span class="tag">&lt;text</span> <span class="attribute">x</span>=<span class="value">"100"</span> <span class="attribute">y</span>=<span class="value">"110"</span> 
+          <span class="attribute">text-anchor</span>=<span class="value">"middle"</span>
+          <span class="attribute">fill</span>=<span class="value">"white"</span><span class="tag">&gt;</span>
+        SVG in HTML5
+    <span class="tag">&lt;/text&gt;</span>
+<span class="tag">&lt;/svg&gt;</span></code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- XML in HTML: MathML -->
+        <section class="card" style="margin: 60px 0;">
+            <h2>🧮 XML in HTML: MathML (Mathematical Markup Language)</h2>
+            <p>MathML is an XML-based language for describing mathematical notation. It can be embedded in HTML5 for displaying complex equations.</p>
+            
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 20px 0;">
+                <h3>Mathematical Equations with MathML:</h3>
+                
+                <!-- Quadratic Formula -->
+                <div style="font-size: 1.2em; margin: 20px 0; text-align: center;">
+                    <p>Quadratic Formula:</p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>x</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <mo>-</mo>
+                                <mi>b</mi>
+                                <mo>±</mo>
+                                <msqrt>
+                                    <msup>
+                                        <mi>b</mi>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mo>-</mo>
+                                    <mn>4</mn>
+                                    <mi>a</mi>
+                                    <mi>c</mi>
+                                </msqrt>
+                            </mrow>
+                            <mrow>
+                                <mn>2</mn>
+                                <mi>a</mi>
+                            </mrow>
+                        </mfrac>
+                    </math>
+                </div>
+                
+                <!-- Pythagorean Theorem -->
+                <div style="font-size: 1.2em; margin: 20px 0; text-align: center;">
+                    <p>Pythagorean Theorem:</p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <msup>
+                            <mi>a</mi>
+                            <mn>2</mn>
+                        </msup>
+                        <mo>+</mo>
+                        <msup>
+                            <mi>b</mi>
+                            <mn>2</mn>
+                        </msup>
+                        <mo>=</mo>
+                        <msup>
+                            <mi>c</mi>
+                            <mn>2</mn>
+                        </msup>
+                    </math>
+                </div>
+                
+                <!-- Integral -->
+                <div style="font-size: 1.2em; margin: 20px 0; text-align: center;">
+                    <p>Integral of x²:</p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mrow>
+                            <mo>∫</mo>
+                            <msup>
+                                <mi>x</mi>
+                                <mn>2</mn>
+                            </msup>
+                            <mi>d</mi>
+                            <mi>x</mi>
+                            <mo>=</mo>
+                            <mfrac>
+                                <msup>
+                                    <mi>x</mi>
+                                    <mn>3</mn>
+                                </msup>
+                                <mn>3</mn>
+                            </mfrac>
+                            <mo>+</mo>
+                            <mi>C</mi>
+                        </mrow>
+                    </math>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span>MathML in HTML5</span>
+                    <span>Mathematical Notation</span>
+                </div>
+                <div class="code-content">
+                    <pre><code><span class="comment">&lt;!-- MathML for quadratic formula --&gt;</span>
+<span class="tag">&lt;math</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1998/Math/MathML"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;mi&gt;</span>x<span class="tag">&lt;/mi&gt;</span>
+    <span class="tag">&lt;mo&gt;</span>=<span class="tag">&lt;/mo&gt;</span>
+    <span class="tag">&lt;mfrac&gt;</span>
+        <span class="tag">&lt;mrow&gt;</span>
+            <span class="tag">&lt;mo&gt;</span>-<span class="tag">&lt;/mo&gt;</span>
+            <span class="tag">&lt;mi&gt;</span>b<span class="tag">&lt;/mi&gt;</span>
+            <span class="tag">&lt;mo&gt;</span>±<span class="tag">&lt;/mo&gt;</span>
+            <span class="tag">&lt;msqrt&gt;</span>
+                <span class="tag">&lt;msup&gt;</span>
+                    <span class="tag">&lt;mi&gt;</span>b<span class="tag">&lt;/mi&gt;</span>
+                    <span class="tag">&lt;mn&gt;</span>2<span class="tag">&lt;/mn&gt;</span>
+                <span class="tag">&lt;/msup&gt;</span>
+                <span class="tag">&lt;mo&gt;</span>-<span class="tag">&lt;/mo&gt;</span>
+                <span class="tag">&lt;mn&gt;</span>4<span class="tag">&lt;/mn&gt;</span>
+                <span class="tag">&lt;mi&gt;</span>a<span class="tag">&lt;/mi&gt;</span>
+                <span class="tag">&lt;mi&gt;</span>c<span class="tag">&lt;/mi&gt;</span>
+            <span class="tag">&lt;/msqrt&gt;</span>
+        <span class="tag">&lt;/mrow&gt;</span>
+        <span class="tag">&lt;mrow&gt;</span>
+            <span class="tag">&lt;mn&gt;</span>2<span class="tag">&lt;/mn&gt;</span>
+            <span class="tag">&lt;mi&gt;</span>a<span class="tag">&lt;/mi&gt;</span>
+        <span class="tag">&lt;/mrow&gt;</span>
+    <span class="tag">&lt;/mfrac&gt;</span>
+<span class="tag">&lt;/math&gt;</span></code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Modern HTML5 Features -->
+        <section class="modern-features">
+            <h2>🚀 Modern HTML5 Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Semantic Elements</h3>
+                    <p><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>Multimedia</h3>
+                    <p><code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code>, <code>&lt;source&gt;</code>, <code>&lt;track&gt;</code></p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>Graphics</h3>
+                    <p><code>&lt;canvas&gt;</code> for drawing, <code>&lt;svg&gt;</code> for vector graphics</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>Form Enhancements</h3>
+                    <p>New input types, validation, placeholder, autocomplete</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>APIs</h3>
+                    <p>LocalStorage, Geolocation, Drag & Drop, Web Workers</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>Accessibility</h3>
+                    <p>ARIA attributes, landmark roles, better screen reader support</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Best Practices -->
+        <section class="card">
+            <h2>🌟 Modern HTML Best Practices</h2>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <h4>Use HTML5 Doctype</h4>
+                    <p><code>&lt;!DOCTYPE html&gt;</code> - Simple and effective</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>Character Encoding</h4>
+                    <p><code>&lt;meta charset="UTF-8"&gt;</code> - First in head</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>Viewport Meta Tag</h4>
+                    <p><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></p>
+                </div>
+                
+                <div class="feature">
+                    <h4>Semantic Elements</h4>
+                    <p>Use meaningful elements over generic divs</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>Accessibility</h4>
+                    <p>Always include alt text, proper labels, ARIA when needed</p>
+                </div>
+                
+                <div class="feature">
+                    <h4>Validation</h4>
+                    <p>Use the W3C validator to check your HTML</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Practice Exercise -->
+        <section class="practice">
+            <h2>💪 Practice Exercise</h2>
+            
+            <h3>Create a Modern Scientific Web Page</h3>
+            
+            <div style="background: white; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>Requirements:</h4>
+                <ol>
+                    <li><strong>XHTML-Strict Document:</strong>
+                        <ul>
+                            <li>Create a valid XHTML 1.0 Strict document</li>
+                            <li>Include proper XML declaration</li>
+                            <li>Use strict syntax rules (all tags closed, lowercase, quoted attributes)</li>
+                            <li>Add mathematical content using presentational markup</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>HTML5 Modern Document:</strong>
+                        <ul>
+                            <li>Convert the same content to HTML5</li>
+                            <li>Use semantic elements (header, nav, main, article, footer)</li>
+                            <li>Embed SVG graphics for scientific diagrams</li>
+                            <li>Use MathML for equations (or CSS-styled alternatives)</li>
+                            <li>Add multimedia elements (video explaining concepts)</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Content to Include:</strong>
+                        <ul>
+                            <li>Scientific article about a topic (physics, math, biology)</li>
+                            <li>At least 3 mathematical equations</li>
+                            <li>2 SVG diagrams (graphs, molecular structures, etc.)</li>
+                            <li>Interactive elements (buttons to show/hide derivations)</li>
+                            <li>Responsive design that works on mobile</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Technical Requirements:</strong>
+                        <ul>
+                            <li>Proper DOCTYPE for both versions</li>
+                            <li>Character encoding set to UTF-8</li>
+                            <li>Viewport meta tag for responsive design</li>
+                            <li>Accessibility features (alt text, ARIA labels)</li>
+                            <li>Clean, well-commented code</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <div style="background: #e8f4fc; padding: 25px; border-radius: 10px;">
+                <h4>Starter Code Comparison:</h4>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h5>XHTML 1.0 Strict</h5>
+                        <pre style="font-size: 12px;"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+  &lt;title&gt;Scientific Article&lt;/title&gt;
+  &lt;meta http-equiv="Content-Type" 
+        content="text/html; charset=UTF-8" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="header"&gt;
+    &lt;h1&gt;Physics 101&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;!-- Content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    
+                    <div>
+                        <h5>HTML5 Modern</h5>
+                        <pre style="font-size: 12px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" 
+        content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Scientific Article&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Physics 101&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;!-- Semantic content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Bonus Challenges:</h3>
+            <ul>
+                <li>Create an interactive SVG graph that responds to user input</li>
+                <li>Implement a simple calculator using HTML form elements</li>
+                <li>Add Web Storage to save user preferences</li>
+                <li>Create a print-friendly version using CSS media queries</li>
+                <li>Implement dark/light mode toggle</li>
+                <li>Add keyboard navigation for all interactive elements</li>
+            </ul>
+        </section>
+    </div>
+    
+    <script>
+        // Interactive SVG effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // SVG button click effect
+            const svgButtons = document.querySelectorAll('.svg-button, .svg-hover');
+            
+            svgButtons.forEach(button => {
+                // Hover effect
+                button.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.8';
+                    this.style.cursor = 'pointer';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.opacity = '1';
+                });
+                
+                // Click effect for buttons
+                if (button.classList.contains('svg-button')) {
+                    button.addEventListener('click', function() {
+                        this.style.fill = '#2980b9';
+                        setTimeout(() => {
+                            this.style.fill = '#3498db';
+                        }, 200);
+                        alert('SVG Button Clicked!');
+                    });
+                }
+            });
+            
+            // MathML browser support check
+            const hasMathML = typeof MathMLElement !== 'undefined';
+            const mathSection = document.querySelector('section:nth-of-type(4)');
+            
+            if (!hasMathML && mathSection) {
+                const warning = document.createElement('div');
+                warning.style.background = '#fff3cd';
+                warning.style.padding = '15px';
+                warning.style.borderRadius = '8px';
+                warning.style.margin = '20px 0';
+                warning.style.borderLeft = '4px solid #ffc107';
+                warning.innerHTML = `
+                    <strong>Note:</strong> Your browser may not fully support MathML. 
+                    For best results, use Firefox or Safari, or consider using a 
+                    JavaScript library like MathJax for cross-browser math rendering.
+                `;
+                mathSection.insertBefore(warning, mathSection.firstChild);
+            }
+        });
+    </script>
+</body>
+</html>

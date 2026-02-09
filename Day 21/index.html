@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day 21: Unordered Lists & Attributes</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', system-ui; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #3498db;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* List Styling Variations */
+        .disc-list { list-style-type: disc; }
+        .circle-list { list-style-type: circle; }
+        .square-list { list-style-type: square; }
+        .none-list { list-style-type: none; padding-left: 0; }
+        .custom-list { list-style-type: none; padding-left: 0; }
+        .custom-list li::before { 
+            content: "✓ "; 
+            color: #2ecc71; 
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .image-list { list-style-type: none; padding-left: 0; }
+        .image-list li {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>') no-repeat left center;
+            background-size: 20px;
+            padding-left: 30px;
+            margin: 10px 0;
+        }
+        
+        /* Nested List Styling */
+        .nested-list ul { 
+            margin-left: 20px; 
+            list-style-type: circle;
+        }
+        .nested-list ul ul { 
+            list-style-type: square; 
+        }
+        
+        /* Horizontal List */
+        .horizontal-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .horizontal-list li {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        /* ID and Class Examples */
+        #unique-element {
+            background: #fff3cd;
+            padding: 20px;
+            border: 2px dashed #ffc107;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .highlight { background-color: #ffeaa7; padding: 3px 6px; border-radius: 3px; }
+        .warning { color: #e74c3c; font-weight: bold; }
+        .success { color: #2ecc71; font-weight: bold; }
+        .note { 
+            background: #e8f4fc; 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+        
+        /* Code Display */
+        code { 
+            background: #2d2d2d; 
+            color: #f8f8f2; 
+            padding: 2px 6px; 
+            border-radius: 3px; 
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #2d2d2d; 
+            color: #f8f8f2; 
+            padding: 20px; 
+            border-radius: 8px; 
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        /* Interactive Example */
+        .interactive-list li {
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .interactive-list li:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(10px);
+        }
+        
+        /* Attribute Selector Demo */
+        [data-category="web"] { border-left: 4px solid #3498db; }
+        [data-category="design"] { border-left: 4px solid #9b59b6; }
+        [data-category="data"] { border-left: 4px solid #2ecc71; }
+    </style>
+</head>
+<body>
+    <h1> Day 21: Unordered Lists & Attributes Mastery</h1>
+    
+    <!-- Introduction -->
+    <section class="card">
+        <h2>Why Lists Matter</h2>
+        <p>Unordered lists (<code>&lt;ul&gt;</code>) are essential for structuring content. When combined with <code>id</code> and <code>class</code> attributes, they become powerful tools for both styling and JavaScript manipulation.</p>
+        
+        <div class="note">
+            <p><strong>Key Concepts:</strong></p>
+            <ul>
+                <li><code>id</code> - Unique identifier (one per page)</li>
+                <li><code>class</code> - Reusable identifier (multiple elements)</li>
+                <li><code>data-*</code> - Custom data attributes</li>
+                <li>CSS can target elements by ID, class, or attributes</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- List Style Variations -->
+    <section class="card">
+        <h2>List Style Types</h2>
+        
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+                <h3>Disc (Default)</h3>
+                <ul class="disc-list">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ul>
+            </div>
+            
+            <div style="flex: 1; min-width: 200px;">
+                <h3>Circle</h3>
+                <ul class="circle-list">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ul>
+            </div>
+            
+            <div style="flex: 1; min-width: 200px;">
+                <h3>Square</h3>
+                <ul class="square-list">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ul>
+            </div>
+            
+            <div style="flex: 1; min-width: 200px;">
+                <h3>None + Custom</h3>
+                <ul class="custom-list">
+                    <li>Completed task</li>
+                    <li>Another task</li>
+                    <li>Pending task</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="note">
+            <h4>CSS Code for Custom Bullets:</h4>
+            <pre><code>.custom-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.custom-list li::before {
+    content: "✓ ";
+    color: #2ecc71;
+    font-weight: bold;
+    margin-right: 10px;
+}</code></pre>
+        </div>
+    </section>
+    
+    <!-- ID Attribute Section -->
+    <section class="card">
+        <h2>🎯 The <code>id</code> Attribute</h2>
+        
+        <p>The <code>id</code> attribute provides a <strong>unique</strong> identifier for an element. Use it for:</p>
+        <ul>
+            <li>Anchor links (<code>href="#section1"</code>)</li>
+            <li>JavaScript DOM manipulation</li>
+            <li>CSS styling (with <code>#id-name</code> selector)</li>
+            <li>Form label association (<code>for="input-id"</code>)</li>
+        </ul>
+        
+        <div id="unique-element">
+            <h3>This element has <code>id="unique-element"</code></h3>
+            <p>Notice the yellow background? That's CSS targeting this specific ID:</p>
+            <pre><code>#unique-element {
+    background: #fff3cd;
+    border: 2px dashed #ffc107;
+    padding: 20px;
+}</code></pre>
+            
+            <p>Try this link: <a href="#unique-element">Jump to this section</a></p>
+        </div>
+        
+        <h3>ID Best Practices:</h3>
+        <ul class="warning">
+            <li>IDs must be unique on the page</li>
+            <li>Start with a letter (not a number)</li>
+            <li>Use kebab-case: <code>main-header</code>, not <code>mainHeader</code></li>
+            <li>Avoid special characters except hyphens and underscores</li>
+        </ul>
+    </section>
+    
+    <!-- Class Attribute Section -->
+    <section class="card">
+        <h2>🎨 The <code>class</code> Attribute</h2>
+        
+        <p>Classes are for <strong>reusable</strong> styling and grouping. Multiple elements can share the same class.</p>
+        
+        <div class="container">
+            <div>
+                <h3>Multiple Classes</h3>
+                <p>Elements can have multiple classes separated by spaces:</p>
+                <p class="highlight success">This paragraph has <code>class="highlight success"</code></p>
+                <p class="highlight warning">This paragraph has <code>class="highlight warning"</code></p>
+                
+                <pre><code>&lt;p class="highlight success"&gt;...&lt;/p&gt;
+&lt;p class="highlight warning"&gt;...&lt;/p&gt;
+
+.highlight { background: #ffeaa7; }
+.success { color: #2ecc71; }
+.warning { color: #e74c71; }</code></pre>
+            </div>
+            
+            <div>
+                <h3>Class Selectors in CSS</h3>
+                <ul>
+                    <li><code>.class-name</code> - targets elements with that class</li>
+                    <li><code>element.class</code> - targets specific elements with class</li>
+                    <li><code>.class1.class2</code> - targets elements with BOTH classes</li>
+                </ul>
+                
+                <div class="note">
+                    <h4>Common Class Naming Conventions:</h4>
+                    <ul>
+                        <li>BEM: <code>.block__element--modifier</code></li>
+                        <li>kebab-case: <code>.main-navigation</code></li>
+                        <li>Descriptive: <code>.text-center</code>, <code>.bg-primary</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+</body>
+</html>
